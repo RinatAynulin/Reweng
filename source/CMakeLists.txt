@@ -11,31 +11,31 @@ set(COMMON_SOURCE_LIST common/error.cpp
                        common/error.h
                        common/utils.h)
 
-set(ENTITY_COMPONENTS_SOURCE_LIST EntityEngine/components/inputcomponents.h)                       
+set(ENTITY_COMPONENTS_SOURCE_LIST ecs/components/inputcomponents.h)                       
 
-set(EVENTS_SOURCE_LIST events/eventmanager.h
-                       events/eventmanager.cpp
-                       events/eventmanagerutils.h
-                       events/eventmanagerutils.cpp
-                       events/event.h)
+set(EVENTS_SOURCE_LIST         events/eventmanager.h
+                               events/eventmanager.cpp
+                               events/eventmanagerutils.h
+                               events/eventmanagerutils.cpp
+                               events/event.h)
 
-set(ENTITY_SYSTEMS_SOURCE_LIST EntityEngine/systems/inputsystem.h
-                               EntityEngine/systems/inputsystem.cpp)
+set(ENTITY_SYSTEMS_SOURCE_LIST ecs/systems/inputsystem.h
+                               ecs/systems/inputsystem.cpp)
 
 
-set(ENTITY_ENGINE_SOURCE_LIST  EntityEngine/entity.h
-                               EntityEngine/entity.cpp
-                               EntityEngine/component.h
-                               EntityEngine/componentpool.h
-                               EntityEngine/componentpool.cpp
-                               EntityEngine/componentutils.h
-                               EntityEngine/componentutils.cpp
-                               EntityEngine/system.h
-                               EntityEngine/context.h
-                               EntityEngine/context.cpp
-                               EntityEngine/group.h
-                               EntityEngine/group.cpp
-                               EntityEngine/entityevents.h)
+set(ENTITY_ENGINE_SOURCE_LIST  ecs/entity.h
+                               ecs/entity.cpp
+                               ecs/component.h
+                               ecs/componentpool.h
+                               ecs/componentpool.cpp
+                               ecs/componentutils.h
+                               ecs/componentutils.cpp
+                               ecs/system.h
+                               ecs/context.h
+                               ecs/context.cpp
+                               ecs/group.h
+                               ecs/group.cpp
+                               ecs/entityevents.h)
 
 set(RENDERER_SOURCE_LIST       renderer/renderer.cpp 
                                renderer/renderer.h
@@ -56,9 +56,9 @@ set(RENDERER_SOURCE_LIST       renderer/renderer.cpp
 
 source_group(game)
 source_group(game\\events FILES ${EVENTS_SOURCE_LIST})
-source_group(game\\EntityEngine FILES ${ENTITY_ENGINE_SOURCE_LIST})
-source_group(game\\EntityEngine\\components FILES ${ENTITY_COMPONENTS_SOURCE_LIST})
-source_group(game\\EntityEngine\\systems FILES ${ENTITY_SYSTEMS_SOURCE_LIST})
+source_group(game\\ecs FILES ${ENTITY_ENGINE_SOURCE_LIST})
+source_group(game\\ecs\\components FILES ${ENTITY_COMPONENTS_SOURCE_LIST})
+source_group(game\\ecs\\systems FILES ${ENTITY_SYSTEMS_SOURCE_LIST})
 source_group(game\\common FILES ${COMMON_SOURCE_LIST})
 source_group(game\\renderer FILES ${RENDERER_SOURCE_LIST})
 

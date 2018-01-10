@@ -1,8 +1,8 @@
 #pragma once
 
 #include <common/error.h>
-#include <EntityEngine/component.h>
-#include <EntityEngine/componentutils.h>
+#include <ecs/component.h>
+#include <ecs/componentutils.h>
 
 #include <map>
 #include <memory>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <EntityEngine/component.h>
+#include <ecs/component.h>
 
 namespace Reweng
 {

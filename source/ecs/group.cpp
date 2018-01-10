@@ -1,9 +1,9 @@
 #include "group.h"
 
 #include <common/error.h>
-#include <EntityEngine/context.h>
-#include <EntityEngine/entity.h>
-#include <EntityEngine/entityevents.h>
+#include <ecs/context.h>
+#include <ecs/entity.h>
+#include <ecs/entityevents.h>
 
 namespace Reweng
 {

@@ -1,6 +1,6 @@
 #include "inputsystem.h"
 
-#include <EntityEngine/components/inputcomponents.h>
+#include <ecs/components/inputcomponents.h>
 
 namespace Reweng
 {

@@ -1,7 +1,7 @@
-#include <EntityEngine/context.h>
-#include <EntityEngine/component.h>
-#include <EntityEngine/systems/inputsystem.h>
-#include <EntityEngine/components/inputcomponents.h>
+#include <ecs/context.h>
+#include <ecs/component.h>
+#include <ecs/systems/inputsystem.h>
+#include <ecs/components/inputcomponents.h>
 
 #include <exception>
 #include <iostream>

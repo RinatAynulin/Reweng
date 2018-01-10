@@ -1,11 +1,11 @@
 #pragma once
 
 #include <common/error.h>
-#include <EntityEngine/componentpool.h>
-#include <EntityEngine/componentutils.h>
-#include <EntityEngine/entity.h>
-#include <EntityEngine/group.h>
-#include <EntityEngine/system.h>
+#include <ecs/componentpool.h>
+#include <ecs/componentutils.h>
+#include <ecs/entity.h>
+#include <ecs/group.h>
+#include <ecs/system.h>
 #include <events/eventmanager.h>
 
 #include <memory>

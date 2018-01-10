@@ -1,10 +1,10 @@
 #pragma once
 
 #include <common/error.h>
-#include <EntityEngine/component.h>
-#include <EntityEngine/componentpool.h>
-#include <EntityEngine/componentutils.h>
-#include <EntityEngine/entityevents.h>
+#include <ecs/component.h>
+#include <ecs/componentpool.h>
+#include <ecs/componentutils.h>
+#include <ecs/entityevents.h>
 #include <events/eventmanager.h>
 
 #include <map>

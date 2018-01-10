@@ -1,7 +1,7 @@
 #pragma once
 
-#include <EntityEngine/context.h>
-#include <EntityEngine/system.h>
+#include <ecs/context.h>
+#include <ecs/system.h>
 
 #include <thirdparty/glfw3/glfw3.h>
 

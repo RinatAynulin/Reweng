@@ -1,6 +1,6 @@
 #include "context.h"
 
-#include <EntityEngine/entityevents.h>
+#include <ecs/entityevents.h>
 
 namespace Reweng
 {

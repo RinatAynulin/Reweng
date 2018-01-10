@@ -1,6 +1,6 @@
 #pragma once
 
-#include <EntityEngine/entity.h>
+#include <ecs/entity.h>
 
 #include <memory>
 #include <vector>
