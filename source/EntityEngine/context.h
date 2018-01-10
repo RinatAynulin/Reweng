@@ -4,9 +4,9 @@
 #include <EntityEngine/componentpool.h>
 #include <EntityEngine/componentutils.h>
 #include <EntityEngine/entity.h>
-#include <EntityEngine/eventmanager.h>
 #include <EntityEngine/group.h>
 #include <EntityEngine/system.h>
+#include <events/eventmanager.h>
 
 #include <memory>
 #include <stack>

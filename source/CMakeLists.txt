@@ -13,6 +13,12 @@ set(COMMON_SOURCE_LIST common/error.cpp
 
 set(ENTITY_COMPONENTS_SOURCE_LIST EntityEngine/components/inputcomponents.h)                       
 
+set(EVENTS_SOURCE_LIST events/eventmanager.h
+                       events/eventmanager.cpp
+                       events/eventmanagerutils.h
+                       events/eventmanagerutils.cpp
+                       events/event.h)
+
 set(ENTITY_SYSTEMS_SOURCE_LIST EntityEngine/systems/inputsystem.h
                                EntityEngine/systems/inputsystem.cpp)
 
@@ -27,11 +33,6 @@ set(ENTITY_ENGINE_SOURCE_LIST  EntityEngine/entity.h
                                EntityEngine/system.h
                                EntityEngine/context.h
                                EntityEngine/context.cpp
-                               EntityEngine/eventmanager.h
-                               EntityEngine/eventmanager.cpp
-                               EntityEngine/eventmanagerutils.h
-                               EntityEngine/eventmanagerutils.cpp
-                               EntityEngine/event.h
                                EntityEngine/group.h
                                EntityEngine/group.cpp
                                EntityEngine/entityevents.h)
@@ -54,6 +55,7 @@ set(RENDERER_SOURCE_LIST       renderer/renderer.cpp
                                renderer/gltransformcomponent.h)
 
 source_group(game)
+source_group(game\\events FILES ${EVENTS_SOURCE_LIST})
 source_group(game\\EntityEngine FILES ${ENTITY_ENGINE_SOURCE_LIST})
 source_group(game\\EntityEngine\\components FILES ${ENTITY_COMPONENTS_SOURCE_LIST})
 source_group(game\\EntityEngine\\systems FILES ${ENTITY_SYSTEMS_SOURCE_LIST})
@@ -61,6 +63,7 @@ source_group(game\\common FILES ${COMMON_SOURCE_LIST})
 source_group(game\\renderer FILES ${RENDERER_SOURCE_LIST})
 
 add_library(${PROJECT} ${COMMON_SOURCE_LIST}
+                       ${EVENTS_SOURCE_LIST}
                        ${ENTITY_COMPONENTS_SOURCE_LIST}
                        ${ENTITY_SYSTEMS_SOURCE_LIST}
                        ${ENTITY_ENGINE_SOURCE_LIST}

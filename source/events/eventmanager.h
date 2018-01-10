@@ -2,7 +2,7 @@
 #include "eventmanagerutils.h"
 
 #include <common/error.h>
-#include <EntityEngine/event.h>
+#include <events/event.h>
 
 #include <functional>
 #include <map>

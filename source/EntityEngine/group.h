@@ -1,6 +1,6 @@
 #pragma once
 
-#include <EntityEngine/eventmanager.h>
+#include <events/eventmanager.h>
 
 #include <memory>
 #include <stack>

@@ -5,7 +5,7 @@
 #include <EntityEngine/componentpool.h>
 #include <EntityEngine/componentutils.h>
 #include <EntityEngine/entityevents.h>
-#include <EntityEngine/eventmanager.h>
+#include <events/eventmanager.h>
 
 #include <map>
 #include <memory>
