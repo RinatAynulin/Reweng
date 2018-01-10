@@ -20,7 +20,9 @@ set(EVENTS_SOURCE_LIST          events/eventmanager.h
 set(GAME_COMPONENTS_SOURCE_LIST game/components/inputcomponents.h)
 
 set(GAME_SYSTEMS_SOURCE_LIST    game/systems/inputsystem.h
-                                game/systems/inputsystem.cpp)
+                                game/systems/inputsystem.cpp
+                                game/systems/inputcleanupsystem.h
+                                game/systems/inputcleanupsystem.cpp)
 
 
 set(ENTITY_ENGINE_SOURCE_LIST   ecs/entity.h

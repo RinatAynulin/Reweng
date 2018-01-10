@@ -17,11 +17,21 @@ namespace Reweng
 
     void Context::Loop()
     {
+        for (auto& system : InitializationSystems)
+        {
+            system->Update(0); //todo: move into IInitializationSystem
+        }
+
         while (true)
         {
             for (auto& system : LogicSystems)
             {
                 system->Update(0);
+            }
+
+            for (auto& system : CleanupSystems)
+            {
+                system->Update(0); //todo: move into ICleanupSystem
             }
         }
     }

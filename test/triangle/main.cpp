@@ -2,6 +2,7 @@
 #include <ecs/component.h>
 #include <game/systems/inputsystem.h>
 #include <game/components/inputcomponents.h>
+#include <game/systems/inputcleanupsystem.h>
 
 #include <exception>
 #include <iostream>
@@ -29,7 +30,6 @@ public:
 
             InputKey* ik = entity->GetComponent<InputKey>();
             std::cout << "key:" << ik->Key << " state:" << ik->State << std::endl;
-            entity->RemoveAllComponents();
         }
 
     }
@@ -52,11 +52,13 @@ int main()
         glfwMakeContextCurrent(Window);
 
         Context::Ptr context(new Context);
-        ISystem::Ptr pSystem(new System(context));
+        ISystem::Ptr pSystem(new System(context));        
         ISystem::Ptr pInput(new InputSystem(context, Window));
+        ISystem::Ptr pInputCleanup(new InputCleanupSystem(context));
 
         context->AddSystem<LogicSystemType>(pInput);
         context->AddSystem<LogicSystemType>(pSystem);
+        context->AddSystem<CleanupSystemType>(pInputCleanup);
 
         context->Loop();
 
