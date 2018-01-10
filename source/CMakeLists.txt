@@ -17,7 +17,11 @@ set(EVENTS_SOURCE_LIST          events/eventmanager.h
                                 events/eventmanagerutils.cpp
                                 events/event.h)
 
-set(GAME_COMPONENTS_SOURCE_LIST game/components/inputcomponents.h)
+set(GAME_COMPONENTS_SOURCE_LIST game/components/inputcomponents.h
+                                game/components/camera.h
+                                game/components/mesh.h
+                                game/components/material.h
+                                game/components/transform.h)
 
 set(GAME_SYSTEMS_SOURCE_LIST    game/systems/inputsystem.h
                                 game/systems/inputsystem.cpp
