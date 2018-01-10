@@ -1,7 +1,7 @@
 #include <ecs/context.h>
 #include <ecs/component.h>
-#include <ecs/systems/inputsystem.h>
-#include <ecs/components/inputcomponents.h>
+#include <game/systems/inputsystem.h>
+#include <game/components/inputcomponents.h>
 
 #include <exception>
 #include <iostream>
