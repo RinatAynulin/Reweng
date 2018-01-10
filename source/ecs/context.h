@@ -23,35 +23,36 @@ namespace Reweng
     public:
         Context();
 
-        void                            Loop();
-        inline void                     RemoveEntity(const EntityID id);
-        inline EventManager::Ptr        GetEventManager() const;        
-        inline std::vector<Entity::Ptr> GetEntities() const;
-        inline Entity::Ptr              GetEntity(const EntityID id) const;
-        Entity::Ptr                     CreateEntity();
-        void                            Step(const double dt);
+        void                                  Loop();
 
-        template<class Type>
-        inline void                     AddSystem(ISystem::Ptr system);
+        inline void                           RemoveEntity(const EntityID id);
+        inline EventManager::Ptr              GetEventManager() const;        
+        inline std::vector<Entity::Ptr>       GetEntities() const;
+        inline Entity::Ptr                    GetEntity(const EntityID id) const;
+        Entity::Ptr                           CreateEntity();        
+
+        inline void                           AddInitializationSystem(InitializationSystem::Ptr system);
+        inline void                           AddLogicSystem(LogicSystem::Ptr system);
+        inline void                           AddCleanupSystem(CleanupSystem::Ptr system);
 
         template<class ...Components>
-        Group::Ptr                      GetGroup();
+        Group::Ptr                            GetGroup();
         
 
         //void RemoveSystem(const SystemID id);
     private:
-        EventManager::Ptr         pEventManager;
+        EventManager::Ptr                      pEventManager;
 
-        EntityID                  entityCount;
-        std::vector<Entity::Ptr>  Entities;
-        std::vector<Group::Ptr>   Groups;
-        std::stack<EntityID>      ReusableEntities;
+        EntityID                               entityCount;
+        std::vector<Entity::Ptr>               Entities;
+        std::vector<Group::Ptr>                Groups;
+        std::stack<EntityID>                   ReusableEntities;
 
-        std::vector<ISystem::Ptr> LogicSystems;
-        std::vector<ISystem::Ptr> InitializationSystems;
-        std::vector<ISystem::Ptr> CleanupSystems;
+        std::vector<InitializationSystem::Ptr> InitializationSystems;
+        std::vector<LogicSystem::Ptr>          LogicSystems;        
+        std::vector<CleanupSystem::Ptr>        CleanupSystems;
 
-        ComponentPools::Ptr       pComponentPools;
+        ComponentPools::Ptr                    pComponentPools;
     };
 
     inline void Context::RemoveEntity(const EntityID id)
@@ -66,20 +67,19 @@ namespace Reweng
         return pEventManager;
     }
 
-    template<class Type>
-    inline void Context::AddSystem(ISystem::Ptr system)
+    inline void Context::AddInitializationSystem(InitializationSystem::Ptr system)
     {
-        GL_CHECK(system != nullptr, "Unable to add a not constructed system.");
+        InitializationSystems.push_back(system);
+    }
 
-        static_assert(std::is_base_of<SystemType, Type>::value && (std::is_same<SystemType, Type>::value == false)
-            , "Incorrect system type: system type have to be derived from SystemType class.");
+    inline void Context::AddLogicSystem(LogicSystem::Ptr system)
+    {
+        LogicSystems.push_back(system);
+    }
 
-        if constexpr(std::is_same<Type, InitializationSystemType>::value)
-            InitializationSystems.push_back(system);
-        else if constexpr(std::is_same<Type, LogicSystemType>::value)
-            LogicSystems.push_back(system);
-        else if constexpr(std::is_same<Type, CleanupSystemType>::value)
-            CleanupSystems.push_back(system);
+    inline void Context::AddCleanupSystem(CleanupSystem::Ptr system)
+    {
+        CleanupSystems.push_back(system);
     }
 
     inline std::vector<Entity::Ptr> Context::GetEntities() const

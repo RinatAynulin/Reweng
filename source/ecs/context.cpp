@@ -19,7 +19,7 @@ namespace Reweng
     {
         for (auto& system : InitializationSystems)
         {
-            system->Update(0); //todo: move into IInitializationSystem
+            system->Initialize();
         }
 
         while (true)
@@ -31,7 +31,7 @@ namespace Reweng
 
             for (auto& system : CleanupSystems)
             {
-                system->Update(0); //todo: move into ICleanupSystem
+                system->Clean();
             }
         }
     }
@@ -56,11 +56,5 @@ namespace Reweng
         pEventManager->SendEvent<EntityAdded>(event);
 
         return newEntity;
-    }
-
-    void Context::Step(const double dt)
-    {
-        //for (auto& system : Systems)
-          //  system->Update(dt);
     }
 }

@@ -5,7 +5,7 @@
 namespace Reweng
 {
     InputSystem::InputSystem(Context::Ptr pcontext, GLFWwindow* wndHandle)
-        : ISystem(pcontext)
+        : LogicSystem(pcontext)
         , WndHandle(wndHandle)
     {
         glfwSetInputMode(WndHandle, GLFW_STICKY_KEYS, 1);

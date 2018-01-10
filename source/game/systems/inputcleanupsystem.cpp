@@ -7,11 +7,11 @@
 namespace Reweng
 {
     InputCleanupSystem::InputCleanupSystem(std::shared_ptr<Context> pcontext)
-        : ISystem(pcontext)
+        : CleanupSystem(pcontext)
     {
     }
 
-    void InputCleanupSystem::Update(const double dt)
+    void InputCleanupSystem::Clean()
     {
         Group::Ptr inputGroup = pContext->GetGroup<InputKey>();
         for (const auto& entity : inputGroup->GetEntities())

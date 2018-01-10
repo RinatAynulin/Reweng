@@ -17,7 +17,7 @@ namespace Reweng
         }
     }
 
-    class InputSystem : public ISystem
+    class InputSystem : public LogicSystem
     {
     public:
         InputSystem(Context::Ptr pcontext, GLFWwindow* wndHandle);

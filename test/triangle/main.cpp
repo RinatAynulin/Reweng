@@ -10,12 +10,12 @@
 
 using namespace Reweng;
 
-class System : public ISystem
+class System : public LogicSystem
 {
 public:
 
     System(Context::Ptr context)
-        : ISystem(context)
+        : LogicSystem(context)
     {
        Group = pContext->GetGroup<InputKey>();
     }
@@ -52,13 +52,13 @@ int main()
         glfwMakeContextCurrent(Window);
 
         Context::Ptr context(new Context);
-        ISystem::Ptr pSystem(new System(context));        
-        ISystem::Ptr pInput(new InputSystem(context, Window));
-        ISystem::Ptr pInputCleanup(new InputCleanupSystem(context));
+        LogicSystem::Ptr pSystem(new System(context));
+        LogicSystem::Ptr pInput(new InputSystem(context, Window));
+        CleanupSystem::Ptr pInputCleanup(new InputCleanupSystem(context));
 
-        context->AddSystem<LogicSystemType>(pInput);
-        context->AddSystem<LogicSystemType>(pSystem);
-        context->AddSystem<CleanupSystemType>(pInputCleanup);
+        context->AddLogicSystem(pInput);
+        context->AddLogicSystem(pSystem);
+        context->AddCleanupSystem(pInputCleanup);
 
         context->Loop();
 

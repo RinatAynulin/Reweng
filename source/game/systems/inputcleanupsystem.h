@@ -4,11 +4,11 @@
 
 namespace Reweng
 {
-    class InputCleanupSystem : public ISystem
+    class InputCleanupSystem : public CleanupSystem
     {
     public:
         InputCleanupSystem(std::shared_ptr<Context> pcontext);
 
-        virtual void Update(const double dt) override;    
+        virtual void Clean() override;    
     };
 }
