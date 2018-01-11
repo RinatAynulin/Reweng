@@ -26,8 +26,7 @@ namespace Reweng
         const int newState  = glfwGetKey(WndHandle, key);
         LastKeyStates[key]  = newState;
 
-        if (((lastState == GLFW_PRESS) && (newState == GLFW_RELEASE)) || 
-            ((lastState == GLFW_RELEASE) && (newState == GLFW_PRESS)))
+        if (((lastState == GLFW_PRESS) && (newState == GLFW_RELEASE)) || (newState == GLFW_PRESS))
         {
             Entity::Ptr entity = pContext->CreateEntity();
             InputKey inputKey = {};
