@@ -3,7 +3,6 @@
 uniform sampler2D texture1;
 //uniform sampler2D texture2;
 
-in vec3 outColor;
 in vec2 outTexPos;
 
 out vec4 FragColor;

@@ -9,7 +9,7 @@ namespace Reweng
     struct TransformComponent : public IComponent
     {
         glm::vec3 Position;
-        glm::vec4 RotationMatrix;
+        glm::mat4 RotationMatrix;
         
         glm::vec3 Scale;
     };

@@ -17,6 +17,9 @@ set(EVENTS_SOURCE_LIST          events/eventmanager.h
                                 events/eventmanagerutils.cpp
                                 events/event.h)
 
+set(GAME_SOURCE_LIST            game/game.h
+                                game/game.cpp)
+
 set(GAME_COMPONENTS_SOURCE_LIST game/components/inputcomponents.h
                                 game/components/camera.h
                                 game/components/mesh.h
@@ -49,18 +52,16 @@ set(RENDERER_SOURCE_LIST        renderer/renderer.cpp
                                 renderer/glshader.h
                                 renderer/glshadermanager.cpp
                                 renderer/glshadermanager.h
-                                renderer/meshcomponent.h
                                 renderer/glmeshmanager.cpp
                                 renderer/glmeshmanager.h
                                 renderer/vertex.h
                                 renderer/gltexturemanager.cpp
                                 renderer/gltexturemanager.h
                                 renderer/gltexture.h
-                                renderer/modelcomponent.h
-                                renderer/glmaterialcomponent.h
-                                renderer/gltransformcomponent.h)
+                                renderer/windowholder.h
+                                renderer/windowholder.cpp)
 
-source_group(game)
+source_group(game               FILES ${GAME_SOURCE_LIST})
 source_group(game\\components   FILES ${GAME_COMPONENTS_SOURCE_LIST})
 source_group(game\\systems      FILES ${GAME_SYSTEMS_SOURCE_LIST})
 source_group(events             FILES ${EVENTS_SOURCE_LIST})
@@ -71,6 +72,7 @@ source_group(common             FILES ${COMMON_SOURCE_LIST})
 source_group(renderer           FILES ${RENDERER_SOURCE_LIST})
 
 add_library(${PROJECT}          ${COMMON_SOURCE_LIST}
+                                ${GAME_SOURCE_LIST}
                                 ${GAME_COMPONENTS_SOURCE_LIST}
                                 ${GAME_SYSTEMS_SOURCE_LIST}
                                 ${EVENTS_SOURCE_LIST}

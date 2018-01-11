@@ -1,13 +1,17 @@
 #pragma once
+#include <game/components/mesh.h>
+#include <game/components/camera.h>
 #include <renderer/glshadermanager.h>
 #include <renderer/modelmanager.h>
 #include <renderer/gltexturemanager.h>
+#include <renderer/windowholder.h>
 
 #include <thirdparty/glad/glad.h>
 #include <thirdparty/glfw3/glfw3.h>
 
 #include <array>
 #include <vector>
+#include <memory>
 
 namespace Reweng
 {
@@ -17,46 +21,47 @@ namespace Reweng
         PROGRAM_COUNT = (SHADER_PROGRAM_GENERAL + 1)
     };
 
-    struct Extent2D
-    {
-        uint16_t Width, Height;
-    };
-
-    struct RendererSettings
-    {
-        struct
-        {
-            const char* Name;
-            Extent2D Extent;
-        } Window;
-    };
-
     class Renderer
     {
     public:
-        void Init(const RendererSettings& settings);       
-
-        inline void Submit(const GLMeshComponent& mesh)
-        {
-            SubmitedMeshes.push_back(mesh);
-        }
-
-        void Flush();
+        typedef std::shared_ptr<Renderer> Ptr;
 
     public:
-        GLMeshManager     MeshManager;
-        GLTextureManager  TextureManager;
-        GLShaderManager   ShaderManager;
+        void                         Init(WindowHolder::Ptr pWindow);       
+                                     
+        inline void                  Submit(const MeshComponent& mesh);        
+        void                         Flush();
+                                     
+        inline void                  SetCamera(const CameraComponent& camera);
+        inline Extent2D              GetWindowExtent() const;
+                                     
+    public:                          
+        GLMeshManager                MeshManager;
+        GLTextureManager             TextureManager;
+        GLShaderManager              ShaderManager;
+                                     
+    private:                         
+        void                         InitializeGLAD();
 
     private:
-        void InitializeGLFW();
-        void ConstructWindow(Extent2D extent, const char* tittle);
-        void InitializeGLAD();
+        WindowHolder::Ptr            pWindow;
 
-    private:
-        GLFWwindow* Window = nullptr;
-        Extent2D    WindowExtent = {};        
-
-        std::vector<GLMeshComponent> SubmitedMeshes;
+        std::vector<MeshComponent>   SubmitedMeshes;
+        CameraComponent              CurrentCamera;
     };
+
+    inline void Renderer::Submit(const MeshComponent& mesh)
+    {
+        SubmitedMeshes.push_back(mesh);
+    }
+
+    inline void Renderer::SetCamera(const CameraComponent& camera)
+    {
+        CurrentCamera = camera;
+    }
+
+    inline Extent2D Renderer::GetWindowExtent() const
+    {
+        return pWindow->GetExtent();
+    }
 }

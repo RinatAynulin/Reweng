@@ -8,5 +8,8 @@ namespace Reweng
     struct CameraComponent : public IComponent
     {
         TransformComponent Transform;
+        
+        glm::mat4 View;
+        glm::mat4 Projection;
     };
 }

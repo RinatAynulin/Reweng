@@ -8,14 +8,14 @@
 
 namespace Reweng
 {
-    void Renderer::Init(const RendererSettings& settings)
-    {
-        InitializeGLFW();
-        ConstructWindow(settings.Window.Extent, settings.Window.Name);
+    void Renderer::Init(WindowHolder::Ptr pWindow)
+    {                
+        this->pWindow = pWindow;
         InitializeGLAD();
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glEnable(GL_DEPTH_TEST);
-        glViewport(0, 0, settings.Window.Extent.Width, settings.Window.Extent.Height);
+        const auto windowExtent = pWindow->GetExtent();
+        glViewport(0, 0,windowExtent.Width, windowExtent.Height);
         MeshManager.Init();
     }
 
@@ -23,44 +23,23 @@ namespace Reweng
     {
         for (const auto& mesh : SubmitedMeshes)
         {
-            mesh.material.shader.Use();
-            glBindTexture(GL_TEXTURE_2D, mesh.material.texture.TextureID);
+            mesh.Material.Shader.Use();
+            glBindTexture(GL_TEXTURE_2D, mesh.Material.Texture.TextureID);
             glBindVertexArray(mesh.VAO);
 
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            glm::mat4 model;
-            model = glm::translate(model, glm::vec3(mesh.transform.position));
-            glm::mat4 view;
-            view = glm::translate(view, glm::vec3(0, 0, -3));
-            glm::mat4 projection;
-            projection = glm::perspective(45.0f, (float)WindowExtent.Width / (float)WindowExtent.Height, 0.1f, 100.0f);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);            
 
-            mesh.material.shader.SetUniformMatrix4fv("model", glm::value_ptr(model));
-            mesh.material.shader.SetUniformMatrix4fv("view", glm::value_ptr(view));
-            mesh.material.shader.SetUniformMatrix4fv("projection", glm::value_ptr(projection));
+            glm::mat4 model = glm::translate(glm::mat4(), mesh.Transform.Position) * mesh.Transform.RotationMatrix;
 
-            glDrawArrays(GL_TRIANGLES, 0, 36);//TODO: REMOVE AFTER TEST
+            mesh.Material.Shader.SetUniformMatrix4fv("model", glm::value_ptr(model));
+            mesh.Material.Shader.SetUniformMatrix4fv("view", glm::value_ptr(CurrentCamera.View));
+            mesh.Material.Shader.SetUniformMatrix4fv("projection", glm::value_ptr(CurrentCamera.Projection));
+
+            glDrawElements(GL_TRIANGLES, mesh.IndiceCount, GL_UNSIGNED_INT, 0);
         }
 
-        glfwPollEvents();
-        glfwSwapBuffers(Window);
-    }
-
-    void Renderer::InitializeGLFW()
-    {
-        glfwInit();
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-    }
-
-    void Renderer::ConstructWindow(Extent2D extent, const char* title)
-    {
-        Window = glfwCreateWindow(extent.Width, extent.Height, title, nullptr, nullptr);
-        GL_CHECK(Window != nullptr, "Unable to create a window.");
-        glfwMakeContextCurrent(Window);
-        WindowExtent = extent;
+        glfwSwapBuffers(pWindow->GetHandle());
+        SubmitedMeshes.resize(0);
     }
 
     void Renderer::InitializeGLAD()

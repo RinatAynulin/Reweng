@@ -8,7 +8,7 @@ namespace Reweng
 {
     struct MaterialComponent : public IComponent
     {
-        GLShader shader;
-        GLTexture texture;
+        GLShader Shader;
+        GLTexture Texture;
     };
 }

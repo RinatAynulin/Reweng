@@ -1,8 +1,8 @@
 #pragma once
 
 #include <common/error.h>
+#include <game/components/mesh.h>
 #include <renderer/vertex.h>
-#include <renderer/meshcomponent.h>
 
 #include <thirdparty/glad/glad.h>
 
@@ -22,12 +22,12 @@ namespace Reweng
 
         MeshID UploadMesh(const std::string& name, const std::vector<Vertex>& vertices, const std::vector<GLuint>& indices);
 
-        inline GLMeshComponent GetMesh(MeshID id)
+        inline MeshComponent GetMesh(MeshID id)
         {
             return Meshes[id];
         }
 
-        inline GLMeshComponent GetMesh(const std::string& name)
+        inline MeshComponent GetMesh(const std::string& name)
         {
             const auto it = MeshTable.find(name);
             GL_CHECK(it != MeshTable.end(), "Unable to get a model by name.");
@@ -39,7 +39,7 @@ namespace Reweng
         void UploadCubeMesh();
 
     private:
-        std::vector<GLMeshComponent> Meshes;
+        std::vector<MeshComponent> Meshes;
         std::unordered_map<std::string, MeshID> MeshTable;
     };
 }

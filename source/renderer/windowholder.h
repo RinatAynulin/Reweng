@@ -2,8 +2,9 @@
 
 #include <common/error.h>
 
-#include <thirdparty/glad/glad.h>
 #include <thirdparty/glfw3/glfw3.h>
+
+#include <memory>
 
 namespace Reweng
 {
@@ -15,12 +16,16 @@ namespace Reweng
     class WindowHolder final
     {
     public:
+        typedef std::shared_ptr<WindowHolder> Ptr;
+
+    public:
         inline WindowHolder()
         {
             glfwInit();
-            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+            glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
         }
 
@@ -28,6 +33,7 @@ namespace Reweng
         {
             Handle = glfwCreateWindow(extent.Width, extent.Height, title, nullptr, nullptr);
             GL_CHECK(Handle != nullptr, "Unable to create a window.");
+            glfwMakeContextCurrent(Handle);
             Extent = extent;
         }
         
