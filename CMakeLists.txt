@@ -12,4 +12,4 @@ include_directories(source)
 link_directories("C:\\repos\\pixal\\source\\thirdparty\\glfw3" "C:\\repos\\pixal\\source\\thirdparty\\glad")
 
 add_subdirectory(source)
-add_subdirectory(test/triangle)
+add_subdirectory(test/modelview)

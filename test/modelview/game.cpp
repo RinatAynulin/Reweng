@@ -56,12 +56,12 @@ namespace Reweng
                 switch (key->Key)
                 {
                 case GLFW_KEY_A:
-                    mesh->Transform.RotationMatrix = glm::rotate(mesh->Transform.RotationMatrix, glm::radians(10.0f), glm::vec3{ 0,-1,0 });
+                    mesh->Transform.RotationMatrix = glm::rotate(mesh->Transform.RotationMatrix, glm::radians(1.0f), glm::vec3{ 0,-1,0 });
                     std::cout << "A\n";
                     break;
 
                 case GLFW_KEY_D:
-                    mesh->Transform.RotationMatrix = glm::rotate(mesh->Transform.RotationMatrix, glm::radians(10.0f), glm::vec3{ 0,1,0 });
+                    mesh->Transform.RotationMatrix = glm::rotate(mesh->Transform.RotationMatrix, glm::radians(1.0f), glm::vec3{ 0,1,0 });
                     std::cout << "D\n";
                     break;
                 }

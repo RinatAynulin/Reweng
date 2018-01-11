@@ -4,10 +4,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(EXE draw_triangle)
+set(EXE modelview)
 project (${EXE})
 
-add_executable(${EXE} main.cpp)
+add_executable(${EXE} main.cpp game.h game.cpp)
 
 target_link_libraries(${EXE} game)
 
