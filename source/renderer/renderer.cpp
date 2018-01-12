@@ -21,13 +21,13 @@ namespace Reweng
 
     void Renderer::Flush()
     {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
         for (const auto& mesh : SubmitedMeshes)
         {
             mesh.Material.Shader.Use();
             glBindTexture(GL_TEXTURE_2D, mesh.Material.Texture.TextureID);
-            glBindVertexArray(mesh.VAO);
-
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);            
+            glBindVertexArray(mesh.VAO);            
 
             glm::mat4 model = glm::translate(glm::mat4(), mesh.Transform.Position) * mesh.Transform.RotationMatrix;
 
